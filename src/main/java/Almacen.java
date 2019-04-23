@@ -1,15 +1,14 @@
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.lang.Math;
 
 public class Almacen{
 	
 	public String[] buffer; // Will store the Scheme operations
 	public int cantidad; // Will keep track of how many operations are left in buffer.
 	
-	public Almacen(){
-		this.buffer = new String[100];
+	public Almacen(Integer size){
+		this.buffer = new String[size];
 		this.cantidad = 0;
 	}
 	
@@ -82,29 +81,29 @@ public class Almacen{
         return 0;
 	}
 	
-	public static void main(String[] args){
-		Almacen scheme = new Almacen();
-		
-		int noProd = 3;
-		int noCons = 5;
-		//~ for(int i = 1; i < Math.max(noProd,noCons) +1 ;i++){
-	        //~ new Productor(i,scheme).start();
-	        //~ new Consumidor(i,scheme).start();
-		//~ }
-		
-		for(int i = 1; i < noProd + 1 ; i++){
-			new Productor(i,scheme).start();
-		}
-		for(int i = 1; i < noCons + 1 ; i++){
-			new Consumidor(i,scheme).start();
-		}
-        
-        /*
-        Almacen scheme = new Almacen();
-        new Productor(1,scheme).start();
-        new Consumidor(2,scheme).start();
-         */
-	}
+//	public static void main(String[] args){
+//		Almacen scheme = new Almacen();
+//		
+//		int noProd = 3;
+//		int noCons = 5;
+//		//~ for(int i = 1; i < Math.max(noProd,noCons) +1 ;i++){
+//	        //~ new Productor(i,scheme).start();
+//	        //~ new Consumidor(i,scheme).start();
+//		//~ }
+//		
+//		for(int i = 1; i < noProd + 1 ; i++){
+//			new Productor(i,scheme).start();
+//		}
+//		for(int i = 1; i < noCons + 1 ; i++){
+//			new Consumidor(i,scheme).start();
+//		}
+//        
+//        /*
+//        Almacen scheme = new Almacen();
+//        new Productor(1,scheme).start();
+//        new Consumidor(2,scheme).start();
+//         */
+//	}
 	
 	
 	//~ public static void main(String[] args){
