@@ -21,16 +21,11 @@ public class Almacen{
 					this.cantidad += 1;
 					String  operacion = ("(" + symbols[rand.nextInt(symbols.length)] + " " + rand.nextInt(10) + " " + rand.nextInt(10) + ")");
 					this.buffer[i] = operacion;
-					System.out.println("Producido: "+ operacion);
+					synchronized (System.out) {System.out.println("Producido: "+ operacion);}
 				}
 			}
 		}
-		//~ if(this.cantidad == 0){
-			//~ String[] symbols = {"+", "-", "/" , "*"};
-			//~ Random rand = new Random(); //This random will take care of generating random Scheme operations
-			//~ this.cantidad += 1;
-			//~ return ("(" + symbols[rand.nextInt(symbols.length)] + " " + rand.nextInt(10) + " " + rand.nextInt(10) + ")");
-		//~ }else{
+		//~ else{
             //~ try{
                 //~ wait();
             //~ }catch (InterruptedException ex) {
@@ -39,7 +34,7 @@ public class Almacen{
 
             
         //~ }
-        //~ return null;
+	
 	}
 	
 	public  synchronized int consumir() {
@@ -72,7 +67,7 @@ public class Almacen{
 					resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
 					break;
 			}
-			System.out.println("Consumido: " + resultado);
+			synchronized (System.out) {System.out.println("Consumido: " + producto + " = " + resultado);};
 			return resultado;
 		}else{
             try{
