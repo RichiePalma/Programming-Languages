@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,22 +29,301 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ejecucionLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        productorTable = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        consumidorTable = new javax.swing.JTable();
+        productorProgressbar = new javax.swing.JProgressBar();
+        tareasRealizadasLabel = new javax.swing.JLabel();
+        tareasRealizadasValue = new javax.swing.JLabel();
+        confLabel = new javax.swing.JLabel();
+        numProdLabel = new javax.swing.JLabel();
+        numConsLabel = new javax.swing.JLabel();
+        numProductores = new javax.swing.JComboBox<>();
+        numConsumidores = new javax.swing.JComboBox<>();
+        sleepProdLabel = new javax.swing.JLabel();
+        sleepConsLabel = new javax.swing.JLabel();
+        sleepProductores = new javax.swing.JTextField();
+        sleepConsumidores = new javax.swing.JTextField();
+        msLabel = new javax.swing.JLabel();
+        msLabel2 = new javax.swing.JLabel();
+        tamAlmLabel = new javax.swing.JLabel();
+        sizeAlmacen = new javax.swing.JTextField();
+        controlesLabel = new javax.swing.JLabel();
+        iniciarButton = new javax.swing.JButton();
+        pararButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        ejecucionLabel.setText("——Ejecución——————————————————————————————————————————————————————————————————");
+
+        productorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ProductorID", "Producción"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(productorTable);
+
+        consumidorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ConsumidorID", "Operacion", "Resultado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(consumidorTable);
+
+        productorProgressbar.setValue(50);
+
+        tareasRealizadasLabel.setText("Tareas Realizadas:");
+
+        tareasRealizadasValue.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tareasRealizadasValue.setText("100");
+
+        confLabel.setText("——Configuración————————————————————————————————————————————————————————————————");
+
+        numProdLabel.setText("# Productores:");
+
+        numConsLabel.setText("# Consumidores:");
+
+        numProductores.setMaximumRowCount(10);
+        numProductores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+
+        numConsumidores.setMaximumRowCount(10);
+        numConsumidores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+
+        sleepProdLabel.setText("Sleep Productores:     [0 - MAXLONG]");
+
+        sleepConsLabel.setText("Sleep Consumidores:  [0 - MAXLONG]");
+
+        sleepProductores.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        sleepProductores.setText("1000");
+
+        sleepConsumidores.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        sleepConsumidores.setText("1000");
+
+        msLabel.setText("ms");
+
+        msLabel2.setText("ms");
+
+        tamAlmLabel.setText("Tamaño almacen: [1-100]");
+
+        sizeAlmacen.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        sizeAlmacen.setText("25");
+
+        controlesLabel.setText("——Controles——————————————————————————————————————————————————————————————————");
+
+        iniciarButton.setText("INICIAR");
+        iniciarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarButtonActionPerformed(evt);
+            }
+        });
+
+        pararButton.setText("PARAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ejecucionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(confLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(controlesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(productorProgressbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tareasRealizadasLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tareasRealizadasValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(numConsLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(numProdLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(numProductores, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numConsumidores, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sleepProdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sleepConsLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sleepProductores)
+                                    .addComponent(sleepConsumidores, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(msLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(msLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tamAlmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sizeAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(iniciarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pararButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(ejecucionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(tareasRealizadasLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productorProgressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tareasRealizadasValue, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addComponent(confLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numProdLabel)
+                    .addComponent(numProductores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sleepProdLabel)
+                    .addComponent(sleepProductores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msLabel))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numConsLabel)
+                    .addComponent(numConsumidores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sleepConsLabel)
+                    .addComponent(sleepConsumidores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tamAlmLabel)
+                    .addComponent(sizeAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(controlesLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pararButton)
+                    .addComponent(iniciarButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {productorProgressbar, tareasRealizadasLabel, tareasRealizadasValue});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane3, jScrollPane4});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void iniciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarButtonActionPerformed
+        if (!validateForm())
+            return;
+        
+        int sleepProd = Integer.parseInt(sleepProductores.getText());
+        int sleepCons = Integer.parseInt(sleepConsumidores.getText());
+        int numProd   = Integer.parseInt((String) numProductores.getSelectedItem());
+        int numCons   = Integer.parseInt((String) numConsumidores.getSelectedItem());
+        
+        System.out.println("================================\n"
+                + "Working as follows:\n\n"
+                + "Tamaño almacen: " + Integer.parseInt(sizeAlmacen.getText()) + "\n"
+                + "# Productores: "  + numProd + "\n"
+                + "# Consumidores: " + numCons + "\n"
+                + "Sleep Productores: "  + sleepProd + "\n"
+                + "Sleep Consumidores: " + sleepCons + "\n"
+                + "================================");
+        
+        Almacen scheme = new Almacen(Integer.parseInt(sizeAlmacen.getText()));
+
+	for(int i = 1; i < numProd + 1 ; i++){
+            new Productor(i,scheme).start();
+	}
+	for(int i = 1; i < numCons + 1 ; i++){
+            new Consumidor(i,scheme).start();
+	}
+    }//GEN-LAST:event_iniciarButtonActionPerformed
+
+    private boolean validateForm(){
+        // Check if they are numbers
+        Integer sizeAlm, sleepProd, sleepCons;
+        try {
+            sizeAlm = Integer.parseInt(sizeAlmacen.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error 'Tamaño almacen':\n\nDebe ser:\nNúmero");
+            return false;
+        }
+        try {
+            sleepProd = Integer.parseInt(sleepProductores.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error 'Sleep Productores':\n\nDebe ser:\nNúmero");
+            return false;
+        }
+        try {
+            sleepCons = Integer.parseInt(sleepConsumidores.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error 'Sleep Consumidores':\n\nDebe ser:\nNúmero");
+            return false;
+        }
+        
+        // Check if in valid range
+        if (sizeAlm < 1 || sizeAlm > 100){
+            JOptionPane.showMessageDialog(this, "Error 'Tamaño almacen':\n\nDebe ser:\n>= 1\n<= 100");
+            return false;
+        }else if (sleepProd < 0 || sleepProd > Long.MAX_VALUE){
+            JOptionPane.showMessageDialog(this, "Error 'Sleep Productores':\n\nDebe ser:\n>= 0\n<= MAX_LONG");
+            return false;
+        }else if (sleepCons < 0 || sleepCons > Long.MAX_VALUE){
+            JOptionPane.showMessageDialog(this, "Error 'Sleep Consumidores':\n\nDebe ser:\n>= 0\n<= MAX_LONG");
+            return false;
+        }
+        return true;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -78,5 +360,29 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel confLabel;
+    private javax.swing.JTable consumidorTable;
+    private javax.swing.JLabel controlesLabel;
+    private javax.swing.JLabel ejecucionLabel;
+    private javax.swing.JButton iniciarButton;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel msLabel;
+    private javax.swing.JLabel msLabel2;
+    private javax.swing.JLabel numConsLabel;
+    private javax.swing.JComboBox<String> numConsumidores;
+    private javax.swing.JLabel numProdLabel;
+    private javax.swing.JComboBox<String> numProductores;
+    private javax.swing.JButton pararButton;
+    private javax.swing.JProgressBar productorProgressbar;
+    private javax.swing.JTable productorTable;
+    private javax.swing.JTextField sizeAlmacen;
+    private javax.swing.JLabel sleepConsLabel;
+    private javax.swing.JTextField sleepConsumidores;
+    private javax.swing.JLabel sleepProdLabel;
+    private javax.swing.JTextField sleepProductores;
+    private javax.swing.JLabel tamAlmLabel;
+    private javax.swing.JLabel tareasRealizadasLabel;
+    private javax.swing.JLabel tareasRealizadasValue;
     // End of variables declaration//GEN-END:variables
 }
