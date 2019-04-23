@@ -12,7 +12,7 @@ public class Consumidor extends Thread{
 	
 	@Override
 	public void run(){
-		for(int i = 0; i < 100; i++){
+		while(true){
 	        Random r = new Random(System.currentTimeMillis());
 	            try {
 	                Thread.sleep(100 * r.nextInt(10));
@@ -23,7 +23,7 @@ public class Consumidor extends Thread{
 	           try{
 					this.scheme.consumir();
 			  }catch(ArithmeticException e){
-					System.out.println(" 'DivisionBy0 ");
+					System.out.println("Comsumido: 'DivisionBy0 ");
 				}  
        }
 	}
