@@ -20,9 +20,11 @@ public class Consumidor extends Thread{
 	                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
 	            }
 	            
-	           
-	            int productoObtenido = this.scheme.consumir();
-	            System.out.println("CONSUMIDOR: " + productoObtenido);
+	           try{
+					this.scheme.consumir();
+			  }catch(ArithmeticException e){
+					System.out.println(" 'DivisionBy0 ");
+				}  
        }
 	}
 

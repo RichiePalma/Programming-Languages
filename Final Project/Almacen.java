@@ -13,7 +13,7 @@ public class Almacen{
 	}
 	
 	public synchronized void producir(){
-		if(this.cantidad == 0){
+		if(this.cantidad < this.buffer.length){
 			String[] symbols = {"+", "-", "/" , "*"};
 			Random rand = new Random();
 			for(int i = 0; i < this.buffer.length; i++){
@@ -21,7 +21,7 @@ public class Almacen{
 					this.cantidad += 1;
 					String  operacion = ("(" + symbols[rand.nextInt(symbols.length)] + " " + rand.nextInt(10) + " " + rand.nextInt(10) + ")");
 					this.buffer[i] = operacion;
-					System.out.println(operacion);
+					System.out.println("Producido: "+ operacion);
 				}
 			}
 		}
@@ -46,10 +46,11 @@ public class Almacen{
 		if(this.cantidad != 0){
 			String producto = null;
 			for(int i = 0; i < this.buffer.length; i++){
-				if(this.buffer[i] == null){
+				if(this.buffer[i] != null){
 					producto = this.buffer[i];
 					this.buffer[i] = null;
 					this.cantidad -= 1;
+					break;
 				}
 			}
 			
@@ -71,6 +72,7 @@ public class Almacen{
 					resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
 					break;
 			}
+			System.out.println("Consumido: " + resultado);
 			return resultado;
 		}else{
             try{

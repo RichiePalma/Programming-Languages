@@ -19,7 +19,7 @@ public class Productor extends Thread{
 	                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
 	            }
 	                   
-	                System.out.print("Producido: ");
+	                //System.out.print("Producido: ");
 	                this.scheme.producir();
 			}
 	}
