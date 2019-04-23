@@ -3,9 +3,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Productor extends Thread{
-	
 	Almacen scheme;
-	public Productor(Almacen scheme){
+	int id;
+	public Productor(int id, Almacen scheme){
+		this.id = id;
 		this.scheme = scheme;
 	}
 	
@@ -20,7 +21,7 @@ public class Productor extends Thread{
 	            }
 	                   
 	                //System.out.print("Producido: ");
-	                this.scheme.producir();
+	                this.scheme.producir(this.id);
 			}
 	}
 	//~ public String producir(){

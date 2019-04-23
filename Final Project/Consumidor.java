@@ -4,9 +4,11 @@ import java.util.logging.Logger;
 
 public class Consumidor extends Thread{
 	
+	int id;
 	Almacen scheme;
 	
-	public Consumidor(Almacen scheme){
+	public Consumidor(int id, Almacen scheme){
+		this.id = id;
 		this.scheme = scheme;
 	}
 	
@@ -21,15 +23,11 @@ public class Consumidor extends Thread{
 	            }
 	            
 	           try{
-					this.scheme.consumir();
+					this.scheme.consumir(this.id);
 			  }catch(ArithmeticException e){
-					System.out.println("Comsumido: 'DivisionBy0 ");
+					System.out.println("Consumido por  id #" + id + ": " + "'DivisionBy0 ");
 				}  
        }
 	}
-
-	//~ public static void main(String[] args){
-		//~ System.out.println(" Soy el consumidor");
-	//~ }
 
 }
