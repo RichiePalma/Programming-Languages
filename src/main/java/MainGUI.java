@@ -1,8 +1,6 @@
-import java.awt.Component;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicSpinnerUI;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +14,9 @@ import javax.swing.plaf.basic.BasicSpinnerUI;
 public class MainGUI extends javax.swing.JFrame {
     private Productor[] productores;
     private Consumidor[] consumidores;
+    
+    private DefaultTableModel tableModelProductor;
+    private DefaultTableModel tableModelConsumidor;
     /**
      * Creates new form MainGUI
      */
@@ -71,19 +72,14 @@ public class MainGUI extends javax.swing.JFrame {
 
         productorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ProductorID", "Producción"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,12 +90,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         consumidorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ConsumidorID", "Operacion", "Resultado"
@@ -180,12 +171,16 @@ public class MainGUI extends javax.swing.JFrame {
         upperBoundValue.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         upperBoundValue.setSelectedIndex(9);
 
+        plusCheck.setSelected(true);
         plusCheck.setText("+");
 
+        minusCheck.setSelected(true);
         minusCheck.setText("-");
 
+        multiplicationCheck.setSelected(true);
         multiplicationCheck.setText("*");
 
+        divisionCheck.setSelected(true);
         divisionCheck.setText("/");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,6 +325,9 @@ public class MainGUI extends javax.swing.JFrame {
             return;
         }
         
+        tableModelProductor = (DefaultTableModel) productorTable.getModel();
+        tableModelConsumidor = (DefaultTableModel) consumidorTable.getModel();
+        
         // Disable button
         JButton iniciar = (JButton) evt.getSource();
         iniciar.setEnabled(false);
@@ -368,6 +366,7 @@ public class MainGUI extends javax.swing.JFrame {
                 symbols, 
                 lowerBound,
                 upperBound);
+        
         this.productores = new Productor[numProd];
         this.consumidores = new Consumidor[numCons];
         
@@ -380,7 +379,6 @@ public class MainGUI extends javax.swing.JFrame {
             this.productores[i-1] = new Productor(i, sleepProd, scheme);
             this.productores[i-1].start();
         }
-
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
     private void pararButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararButtonActionPerformed
@@ -451,8 +449,11 @@ public class MainGUI extends javax.swing.JFrame {
         } else if (sleepCons < 0 || sleepCons > 10000) {
             JOptionPane.showMessageDialog(this, "Error 'Sleep Consumidores':\n\nDebe ser:\n>= 0\n<= 10000");
             return false;
-        } else if (lowerBound == upperBound){
+        } else if (lowerBound.equals(upperBound)){
             JOptionPane.showMessageDialog(this, "Error 'LowerBound' 'UpperBound':\n\nDeben ser:\nLowerBound != UpperBound");
+            return false;
+        } else if (lowerBound > upperBound){
+            JOptionPane.showMessageDialog(this, "Error: 'LowerBound' 'UpperBound':\n\nDeben ser:\nLowerBound < UpperBound");
             return false;
         }
         
@@ -550,5 +551,13 @@ public class MainGUI extends javax.swing.JFrame {
     
     public void setPercentage(int value){
         productorProgressbar.setValue(value);
+    }
+    
+    public void addRowProductorTable(int id, String data){
+        tableModelProductor.addRow(new Object[]{id + "", data});
+    }
+    
+    public void addRowConsumidorTable(int id, String data){
+        tableModelConsumidor.addRow(new Object[]{id + "", data});
     }
 }
