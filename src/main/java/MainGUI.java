@@ -79,7 +79,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -97,7 +97,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -325,6 +325,7 @@ public class MainGUI extends javax.swing.JFrame {
             return;
         }
         
+        clearTables();
         tableModelProductor = (DefaultTableModel) productorTable.getModel();
         tableModelConsumidor = (DefaultTableModel) consumidorTable.getModel();
         
@@ -560,5 +561,41 @@ public class MainGUI extends javax.swing.JFrame {
    
     public void addRowConsumidorTable(int id, String operacion, String data){
         tableModelConsumidor.addRow(new Object[]{id + "", operacion, data});
+    }
+    
+    private void clearTables(){
+        productorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ProductorID", "Producción"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        
+        consumidorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ConsumidorID", "Operacion", "Resultado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
     }
 }
