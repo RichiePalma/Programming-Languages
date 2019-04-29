@@ -449,11 +449,8 @@ public class MainGUI extends javax.swing.JFrame {
         } else if (sleepCons < 0 || sleepCons > 10000) {
             JOptionPane.showMessageDialog(this, "Error 'Sleep Consumidores':\n\nDebe ser:\n>= 0\n<= 10000");
             return false;
-        } else if (lowerBound.equals(upperBound)){
-            JOptionPane.showMessageDialog(this, "Error 'LowerBound' 'UpperBound':\n\nDeben ser:\nLowerBound != UpperBound");
-            return false;
         } else if (lowerBound > upperBound){
-            JOptionPane.showMessageDialog(this, "Error: 'LowerBound' 'UpperBound':\n\nDeben ser:\nLowerBound < UpperBound");
+            JOptionPane.showMessageDialog(this, "Error: 'LowerBound' 'UpperBound':\n\nDeben ser:\nLowerBound <= UpperBound");
             return false;
         }
         
@@ -557,7 +554,11 @@ public class MainGUI extends javax.swing.JFrame {
         tableModelProductor.addRow(new Object[]{id + "", data});
     }
     
-    public void addRowConsumidorTable(int id, String data){
-        tableModelConsumidor.addRow(new Object[]{id + "", data});
+    public void removeRowProductTable(){
+        tableModelProductor.removeRow(0);
+    }
+   
+    public void addRowConsumidorTable(int id, String operacion, String data){
+        tableModelConsumidor.addRow(new Object[]{id + "", operacion, data});
     }
 }

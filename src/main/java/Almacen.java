@@ -34,9 +34,10 @@ public class Almacen {
                     this.buffer[i] = operacion;
                     this.cantidad += 1;
                     GUIRefence.setPercentage((this.cantidad * 100) / this.buffer.length);
-                    synchronized (System.out) {
-                        System.out.println("Producido por  id #" + id + ": " + operacion);
-                    }
+                    GUIRefence.addRowProductorTable(id, operacion);
+//                    synchronized (System.out) {
+//                        System.out.println("Producido por  id #" + id + ": " + operacion);
+//                    }
                     break;
                 }
             }
@@ -59,7 +60,6 @@ public class Almacen {
                     producto = this.buffer[i];
                     this.buffer[i] = null;
                     this.cantidad -= 1;
-                    GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
                     break;
                 }
             }
@@ -82,17 +82,13 @@ public class Almacen {
                     resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
                     break;
             }
-            synchronized (System.out) {
-                System.out.println("Consumido por  id #" + id + ": " + producto + " = " + resultado);
-            };
+            GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
+            GUIRefence.removeRowProductTable();
+            GUIRefence.addRowConsumidorTable(id, producto, resultado + "");
+//            synchronized (System.out) {
+//                System.out.println("Consumido por  id #" + id + ": " + producto + " = " + resultado);
+//            };
             return resultado;
-        } else {
-            try {
-                wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Almacen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         }
         return 0;
     }

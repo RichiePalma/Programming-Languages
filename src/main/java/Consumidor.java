@@ -17,9 +17,9 @@ public class Consumidor extends Thread {
     
     public void end(){
         this.running = false;
-         synchronized (System.out) {
-        System.out.println("Consumidor #" + this.id + " ha dejado de comprar");
-         }
+        synchronized (System.out) {
+            System.out.println("Consumidor #" + this.id + " ha dejado de comprar");
+        }
     }
 
     @Override
