@@ -553,6 +553,7 @@ public class MainGUI extends javax.swing.JFrame {
     
     public void addRowProductorTable(int id, String data){
         tableModelProductor.addRow(new Object[]{id + "", data});
+      
     }
     
     public void removeRowProductTable(){

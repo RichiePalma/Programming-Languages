@@ -33,8 +33,10 @@ public class Almacen {
                     String operacion = ("(" + symbols[rand.nextInt(symbols.length)] + " " +  ThreadLocalRandom.current().nextInt(lowerBound, upperBound) + " " + ThreadLocalRandom.current().nextInt(lowerBound, upperBound) + ")");
                     this.buffer[i] = operacion;
                     this.cantidad += 1;
+                    synchronized(this){
                     GUIRefence.setPercentage((this.cantidad * 100) / this.buffer.length);
                     GUIRefence.addRowProductorTable(id, operacion);
+                }
 //                    synchronized (System.out) {
 //                        System.out.println("Producido por  id #" + id + ": " + operacion);
 //                    }
@@ -42,14 +44,6 @@ public class Almacen {
                 }
             }
         }
-        //~ else{
-        //~ try{
-        //~ wait();
-        //~ }catch (InterruptedException ex) {
-        //~ Logger.getLogger(Almacen.class.getName()).log(Level.SEVERE, null, ex);
-        //~ }
-
-        //~ }
     }
 
     public synchronized int consumir(int id) {
@@ -79,12 +73,21 @@ public class Almacen {
                     resultado = Integer.parseInt(operacion[1]) * Integer.parseInt(operacion[2]);
                     break;
                 case "(/":
-                    resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
-                    break;
+                    try{
+                        resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
+                        break;
+                    }catch(ArithmeticException e){
+                        GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
+                        GUIRefence.removeRowProductTable();
+                        GUIRefence.addRowConsumidorTable(id, producto,"'DivisionBy0 ");
+                        return 0;
+                    }
             }
+            synchronized(this){
             GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
             GUIRefence.removeRowProductTable();
             GUIRefence.addRowConsumidorTable(id, producto, resultado + "");
+            }
 //            synchronized (System.out) {
 //                System.out.println("Consumido por  id #" + id + ": " + producto + " = " + resultado);
 //            };
@@ -92,43 +95,4 @@ public class Almacen {
         }
         return 0;
     }
-
-//	public static void main(String[] args){
-//		Almacen scheme = new Almacen();
-//		
-//		int noProd = 3;
-//		int noCons = 5;
-//		//~ for(int i = 1; i < Math.max(noProd,noCons) +1 ;i++){
-//	        //~ new Productor(i,scheme).start();
-//	        //~ new Consumidor(i,scheme).start();
-//		//~ }
-//		
-//		for(int i = 1; i < noProd + 1 ; i++){
-//			new Productor(i,scheme).start();
-//		}
-//		for(int i = 1; i < noCons + 1 ; i++){
-//			new Consumidor(i,scheme).start();
-//		}
-//        
-//        /*
-//        Almacen scheme = new Almacen();
-//        new Productor(1,scheme).start();
-//        new Consumidor(2,scheme).start();
-//         */
-//	}
-    //~ public static void main(String[] args){
-    //~ System.out.println("Soy el Almacen");
-    //~ //Productor empleado = new Productor();
-    //~ Almacen SchemeINC = new Almacen();
-    //~ for(int i = 0; i < SchemeINC.buffer.length; i++){
-    //~ SchemeINC.buffer[i] = SchemeINC.producir();
-    //~ try{
-    //~ System.out.println(" Producto " + i + ": " + SchemeINC.buffer[i] + " = " + SchemeINC.consumir(SchemeINC.buffer[i] ));
-    //~ }
-    //~ catch(ArithmeticException e){
-    //~ System.out.println(" Producto " + i + ": " + SchemeINC.buffer[i] + " = " + " 'DivisionEntre0 ");
-    //~ }
-    //~ }
-    //~ System.out.println("Storage: " + SchemeINC.cantidad);
-    //~ }
 }
