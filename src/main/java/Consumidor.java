@@ -30,12 +30,7 @@ public class Consumidor extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            try {
-                this.scheme.consumir(this.id);
-            } catch (ArithmeticException e) {
-                System.out.println("Consumido por  id #" + id + ": " + "'DivisionBy0 ");
-            }
+            this.scheme.consumir(this.id);
         }
     }
 

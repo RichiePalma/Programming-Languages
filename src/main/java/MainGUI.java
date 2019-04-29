@@ -551,16 +551,15 @@ public class MainGUI extends javax.swing.JFrame {
         productorProgressbar.setValue(value);
     }
     
-    public void addRowProductorTable(int id, String data){
+    public synchronized void addRowProductorTable(int id, String data){
         tableModelProductor.addRow(new Object[]{id + "", data});
-      
     }
     
-    public void removeRowProductTable(){
+    public synchronized void removeRowProductTable(){
         tableModelProductor.removeRow(0);
     }
    
-    public void addRowConsumidorTable(int id, String operacion, String data){
+    public synchronized void addRowConsumidorTable(int id, String operacion, String data){
         tableModelConsumidor.addRow(new Object[]{id + "", operacion, data});
     }
     

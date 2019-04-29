@@ -77,16 +77,18 @@ public class Almacen {
                         resultado = Integer.parseInt(operacion[1]) / Integer.parseInt(operacion[2]);
                         break;
                     }catch(ArithmeticException e){
-                        GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
-                        GUIRefence.removeRowProductTable();
-                        GUIRefence.addRowConsumidorTable(id, producto,"'DivisionBy0 ");
+                        synchronized(this){
+                            GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
+                            GUIRefence.removeRowProductTable();
+                            GUIRefence.addRowConsumidorTable(id, producto,"'DivisionBy0 ");
+                        }
                         return 0;
                     }
             }
             synchronized(this){
-            GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
-            GUIRefence.removeRowProductTable();
-            GUIRefence.addRowConsumidorTable(id, producto, resultado + "");
+                GUIRefence.setTareasRealizadasValue(++this.tareasRealizadas);
+                GUIRefence.removeRowProductTable();
+                GUIRefence.addRowConsumidorTable(id, producto, resultado + "");
             }
 //            synchronized (System.out) {
 //                System.out.println("Consumido por  id #" + id + ": " + producto + " = " + resultado);
