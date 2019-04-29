@@ -5,17 +5,27 @@ public class Productor extends Thread {
 
     int id;
     int sleepTime;
+    private volatile boolean running;
+    
     Almacen scheme;
 
     public Productor(int id, int sleepTime, Almacen scheme) {
         this.id = id;
         this.sleepTime = sleepTime;
         this.scheme = scheme;
+        this.running = true;
     }
-
+    
+    public void end(){
+        this.running = false;
+         synchronized (System.out) {
+        System.out.println("Productor #" + this.id + " ha dejado de trabajar");
+         }
+    }
+    
     @Override
     public void run() {
-        while (true) {
+        while (this.running) {
             try {
                 Thread.sleep(this.sleepTime);
                 this.scheme.producir(this.id);

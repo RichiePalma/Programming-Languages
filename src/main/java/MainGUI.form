@@ -234,6 +234,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JProgressBar" name="productorProgressbar">
+      <Properties>
+        <Property name="stringPainted" type="boolean" value="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="tareasRealizadas">
       <Properties>

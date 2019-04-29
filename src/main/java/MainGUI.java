@@ -14,7 +14,8 @@ import javax.swing.plaf.basic.BasicSpinnerUI;
  * @author cesar
  */
 public class MainGUI extends javax.swing.JFrame {
-
+    private Productor[] productores;
+    private Consumidor[] consumidores;
     /**
      * Creates new form MainGUI
      */
@@ -113,6 +114,8 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(consumidorTable);
+
+        productorProgressbar.setStringPainted(true);
 
         tareasRealizadas.setName(""); // NOI18N
 
@@ -365,17 +368,33 @@ public class MainGUI extends javax.swing.JFrame {
                 symbols, 
                 lowerBound,
                 upperBound);
-
-        for (int i = 1; i < numProd + 1; i++) {
-            new Productor(i, sleepProd, scheme).start();
-        }
+        this.productores = new Productor[numProd];
+        this.consumidores = new Consumidor[numCons];
+        
         for (int i = 1; i < numCons + 1; i++) {
-            new Consumidor(i, sleepCons, scheme).start();
+            this.consumidores[i-1] = new Consumidor(i, sleepCons, scheme);
+            this.consumidores[i-1].start();
         }
+        
+        for (int i = 1; i < numProd + 1; i++) {
+            this.productores[i-1] = new Productor(i, sleepProd, scheme);
+            this.productores[i-1].start();
+        }
+
     }//GEN-LAST:event_iniciarButtonActionPerformed
 
     private void pararButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararButtonActionPerformed
         // TODO add your handling code here:
+        
+        //Stop all threads
+        for (int i = 1; i < this.productores.length + 1; i++) {
+            this.productores[i-1].end();
+            this.productores[i-1] = null;
+        }
+        for (int i = 1; i < this.consumidores.length + 1; i++) {
+            this.consumidores[i-1].end();
+            this.consumidores[i-1] = null;
+        }
         
         // Disable button
         JButton parar = (JButton) evt.getSource();
